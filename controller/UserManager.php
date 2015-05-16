@@ -4,9 +4,9 @@
  * @author    Andriy Oblivantsev <eslider@gmail.com>
  * @copyright 16.05.2015 by WhereGroup GmbH & Co. KG
  */
-namespace controllers;
+namespace Controller;
 
-use models\User;
+use Model\User;
 
 /**
  *
@@ -30,5 +30,33 @@ class UserManager
     {
     }
 
-    public function registration($user, $password) { }
+    /**
+     * @param $userName
+     * @param $password
+     * @return User
+     * @internal param $user
+     */
+    public function registration($userName, $password)
+    {
+        $user = new User();
+        $user->setName($userName);
+        $user->setPassword($password);
+
+        //TODO: save user into DB
+
+        return $user;
+    }
+
+    /**
+     * Export user data as array
+     *
+     * @param User $user
+     * @return array
+     */
+    public function export(User $user)
+    {
+        return array(
+            "name" => $user->getName()
+        );
+    }
 }
