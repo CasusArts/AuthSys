@@ -9,8 +9,26 @@ namespace Model;
  */
 class User
 {
+    protected $id;
     protected $name;
     protected $password;
+    protected $email;
+
+    /**
+     * @param $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param $name
@@ -42,6 +60,22 @@ class User
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
 }
