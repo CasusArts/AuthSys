@@ -33,10 +33,11 @@ $(function() {
          * @param password
          * @returns jQuery ajax token
          */
-        this.registration = function(userName, password) {
+        this.registration = function(userName, password, email) {
             return this.query("registration", {
                 user: userName,
-                pass: password
+                pass: password,
+                email: email
             });
         };
 
@@ -62,7 +63,26 @@ $(function() {
                     $.notify("User or password is incorrect.");
                 }
             });
+        };
+
+        this.logout = function(){
+            this.query("logout");
+        };
+
+        this.getLoggedUser = function(){
+            this.query("getLoggedUser").done(function(response){
+                console.log(response.user);
+            });
         }
+
+        /**
+         * Load View
+         */
+        this.loadView = function( templateName) {
+            return $.ajax({
+                url: "Views/" + templateName + ".html"
+            });
+        };
     };
 
 });
