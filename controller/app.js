@@ -1,7 +1,6 @@
 /**
  *
  * @author Andriy Oblivantsev <eslider@gmail.com>
- * @copyright 16.05.2015 by WhereGroup GmbH & Co. KG
  */
 $(function(){
 

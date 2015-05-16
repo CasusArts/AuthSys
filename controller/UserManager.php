@@ -1,9 +1,4 @@
 <?php
-/**
- *
- * @author    Andriy Oblivantsev <eslider@gmail.com>
- * @copyright 16.05.2015 by WhereGroup GmbH & Co. KG
- */
 namespace Controller;
 
 use Model\User;
@@ -11,7 +6,6 @@ use Model\User;
 /**
  *
  * @author    Andriy Oblivantsev <eslider@gmail.com>
- * @copyright 15.05.2015 by WhereGroup GmbH & Co. KG
  */
 class UserManager
 {

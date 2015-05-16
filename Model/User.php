@@ -5,7 +5,6 @@ namespace Model;
  * Class User
  *
  * @author    Andriy Oblivantsev <eslider@gmail.com>
- * @copyright 2015 by WhereGroup GmbH & Co. KG
  */
 class User
 {
