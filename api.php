@@ -1,36 +1,41 @@
 <?php
 function __autoload($class_name){ include str_replace("\\", "/", $class_name) . '.php';}
+session_start();
 
 use Controller\UserManager;
 
+$userManager      = new UserManager();
 
-$response = array();
 
 switch ($_GET["act"]) {
 
     case "registration":
-        $userManager      = new UserManager();
-        $user             = $userManager->registration($_GET["user"], $_GET["pass"]);
+        $user             = $userManager->registration($_GET["user"], $_GET["pass"], $_GET["email"]);
         $response["user"] = $userManager->export($user);
         break;
 
     case "login":
-        $userManager = new UserManager();
-        $response["user"] = $userManager->login($_GET["user"], $_GET["pass"]);
+        if(!$userManager->isUserLoggedIn()){
+            $response["user"] = $userManager->login($_GET["user"], $_GET["pass"]);
+        }
 //        $response["data"] = $userManager->showData();
         break;
 
+    case "logout":
+        $userManager->logout();
+        break;
 
     case "getAll":
-        $userManager      = new UserManager();
         $response["users"] = $userManager->getAll();
         break;
 
-    case "hash":
-        $userManager      = new UserManager();
-        $response["hash"] = md5($_GET["text"]);
+    case "getLoggedUser":
+        $response["user"] = $userManager->getLoggedUser();
         break;
 
+    case "hash":
+        $response["hash"] = md5($_GET["text"]);
+        break;
 
 
     default:
