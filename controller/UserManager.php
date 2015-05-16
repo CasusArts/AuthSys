@@ -22,13 +22,33 @@ class UserManager
         $connection = $this->getConnection();
         $pass       = $this->encryptPassword($pass);
         $userData   = null;
+
         foreach ($connection->query("SELECT * FROM user WHERE name LIKE '$user' AND pass LIKE '$pass' ") as $userData) {
             $userData = $this->export($this->create($userData));
             break;
         }
+
+        $_SESSION["user"] = $userData;
+
         return $userData;
     }
 
+    public function logout(){
+        $_SESSION = array();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUserLoggedIn()
+    {
+        return isset($_SESSION["user"]) && $_SESSION["user"] != null;
+    }
+
+    public function getLoggedUser(){
+        return $_SESSION["user"];
+
+    }
 
     /**
      * Get all users
@@ -51,18 +71,13 @@ class UserManager
      * @param $password
      * @return User
      */
-    public function registration($userName, $password)
+    public function registration($userName, $password, $email)
     {
         $password = $this->encryptPassword($password);
-        $user     = new User();
-        $user->setName($userName);
-        $user->setPassword($password);
-
-        //TODO: save user into DB
         $db    = $this->getConnection();
-        $query = $db->prepare("INSERT INTO user ('name', 'pass') VALUES (?,?)");
-        $query->execute(array($userName, $password));
-        return $user;
+        $query = $db->prepare("INSERT INTO user ('name', 'pass', 'email') VALUES (?, ?, ?)");
+        $query->execute(array($userName, $password, $email));
+        return null;
     }
 
     /**
