@@ -5,6 +5,7 @@ namespace Model;
  * Class User
  *
  * @author    Andriy Oblivantsev <eslider@gmail.com>
+ * @author    Fiodor Gorobet <casusarts@gmail.com>
  */
 class User
 {

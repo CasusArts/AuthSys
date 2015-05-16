@@ -6,6 +6,7 @@ use Model\User;
 /**
  *
  * @author    Andriy Oblivantsev <eslider@gmail.com>
+ * @author    Fiodor Gorobet <casusarts@gmail.com>
  */
 class UserManager
 {
