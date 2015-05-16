@@ -26,6 +26,13 @@ $(function() {
             });
         };
 
+        /**
+         * Register user
+         *
+         * @param userName
+         * @param password
+         * @returns jQuery ajax token
+         */
         this.registration = function(userName, password) {
             return this.query("registration", {
                 user: userName,
@@ -33,6 +40,13 @@ $(function() {
             });
         };
 
+        /**
+         * login
+         *
+         * @param userName
+         * @param password
+         * @param onLogin login callback
+         */
         this.login = function(userName, password, onLogin) {
             this.query("login", {
                 user: userName,
@@ -42,7 +56,6 @@ $(function() {
                     if(onLogin) {
                         onLogin(response.user)
                     }
-
                     $.notify("User is logged on.", "info");
                 } else {
 
