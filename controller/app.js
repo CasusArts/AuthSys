@@ -1,7 +1,11 @@
 /**
  *
  * @author Andriy Oblivantsev <eslider@gmail.com>
+ * @author Fiodor Gorobet <casusarts@gmail.com>
  */
+
+// TODO: set md5 encryption for password transfer!
+
 $(function() {
 
     // create frontend controller to manipulate User inputs

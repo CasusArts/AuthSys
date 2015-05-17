@@ -33,7 +33,8 @@ class UserManager
         return $userData;
     }
 
-    public function logout(){
+    public function logout()
+    {
         $_SESSION = array();
     }
 
@@ -45,9 +46,9 @@ class UserManager
         return isset($_SESSION["user"]) && $_SESSION["user"] != null;
     }
 
-    public function getLoggedUser(){
+    public function getLoggedUser()
+    {
         return $_SESSION["user"];
-
     }
 
     /**
