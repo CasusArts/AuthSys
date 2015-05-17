@@ -4,7 +4,7 @@
  * @author Fiodor Gorobet <casusarts@gmail.com>
  */
 
-// TODO: set md5 encryption for password transfer!
+// md5 script: https://github.com/emn178/js-md5/
 
 $(function() {
 
@@ -40,7 +40,7 @@ $(function() {
         this.registration = function(userName, password, email) {
             return this.query("registration", {
                 user: userName,
-                pass: password,
+                pass: md5(md5(password)),
                 email: email
             });
         };
@@ -55,7 +55,7 @@ $(function() {
         this.login = function(userName, password, onLogin) {
             this.query("login", {
                 user: userName,
-                pass: password
+                pass: md5(md5(password))
             }).done(function(response) {
                 if(response.user != null) {
                     if(onLogin) {
@@ -77,7 +77,7 @@ $(function() {
             this.query("getLoggedUser").done(function(response){
                 console.log(response.user);
             });
-        }
+        };
 
         /**
          * Load View
