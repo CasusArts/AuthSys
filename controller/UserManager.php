@@ -9,6 +9,10 @@ use PDO;
  * @author    Andriy Oblivantsev <eslider@gmail.com>
  * @author    Fiodor Gorobet <casusarts@gmail.com>
  */
+
+// TODO: add Email check while registration. if Email exists, forbid the registration
+
+
 class UserManager
 {
     /**
@@ -78,6 +82,7 @@ class UserManager
         $db    = $this->getConnection();
         $query = $db->prepare("INSERT INTO user ('name', 'pass', 'email') VALUES (?, ?, ?)");
         $query->execute(array($userName, $password, $email));
+
         return null;
     }
 
