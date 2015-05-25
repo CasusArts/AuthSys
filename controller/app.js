@@ -37,21 +37,29 @@ $(function() {
          * @param password
          * @returns jQuery ajax token
          */
+        //this.registration = function (userName, password, email) {
+        //    return this.query("registration", {
+        //        user: userName,
+        //        pass: md5(md5(password)),
+        //        email: email
+        //    }).done(function (response) {
+        //        if (response.email != null) { // <- check for existing email in db to notificate
+        //            if (email) {
+        //                email(response.email);
+        //            }
+        //            $.notify("This email is already exists!");
+        //
+        //        } else {
+        //            $.notify("Registration successful!");
+        //        }
+        //    });
+        //};
+
         this.registration = function (userName, password, email) {
             return this.query("registration", {
                 user: userName,
                 pass: md5(md5(password)),
                 email: email
-            }).done(function (response) {
-                if (response.email != null) { // <- check for existing email in db to notificate
-                    if (email) {
-                        email(response.email)
-                    }
-                    $.notify("This email is already exists!");
-
-                } else {
-                    $.notify("Registration successful!");
-                }
             });
         };
 
@@ -71,7 +79,7 @@ $(function() {
                     if(onLogin) {
                         onLogin(response.user)
                     }
-                    $.notify("User is logged on.", "info");
+                    $.notify(response.user.name + " is logged on.", "info");
                 } else {
 
                     $.notify("User or password is incorrect.");
@@ -81,15 +89,14 @@ $(function() {
 
         this.logout = function(){
             this.query("logout");
+
         };
 
         this.getLoggedUser = function(){
             this.query("getLoggedUser").done(function(response){
                 console.log(response.user);
+                $.notify(response.user.name + " is logged on!", "info");
             });
-
-            // Show Pop-up with currently logged user
-            $.notify("user", "info");
         };
 
         /**
