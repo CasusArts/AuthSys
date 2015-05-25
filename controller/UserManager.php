@@ -74,17 +74,67 @@ class UserManager
     /**
      * @param $userName
      * @param $password
+     * @param $email
      * @return User
+     * @var Array $emailCheck
      */
     public function registration($userName, $password, $email)
     {
+//        $emailCheck = Array();
         $password = $this->encryptPassword($password);
         $db    = $this->getConnection();
         $query = $db->prepare("INSERT INTO user ('name', 'pass', 'email') VALUES (?, ?, ?)");
         $query->execute(array($userName, $password, $email));
 
-        return null;
+        // Check if Email exists. If true -> return string "This Email is already exists
+//        $deny = "This Email is already exists!";
+
+//        $emailCheck = $db->prepare("SELECT email FROM name WHERE email LIKE $email");
+//        if (!empty($emailCheck)) {
+//            $emailCheck->execute(array($email));
+//        }
+////        return $email == $emailCheck ? $deny : "YES";
+//        if($emailCheck == $email){
+//            return "This user is already exists!";
+//
+//        } else {
+//            return "Register new user!";
+//        }
+
+
+        // Variant 2:
+        $sql = "SELECT email FROM name WHERE email LIKE $email";
+        foreach ($db->query($sql) as $mail) {
+            if ($mail == null) {
+                return "Registration successful";
+            } else {
+                return "This user is already exists!";
+            }
+
+        }
+        $db = null;
+
+
+        //return null;
     }
+
+    /**
+     * @param $email
+     * @return $deny message if Email allready exists
+     * @return null is Email is not taken
+     */
+/*    public function emailChecker($email){
+        $db = $this->getConnection();
+        $query = $db->prepare("SELECT email FROM name");
+        $deny = "This Email is already exists!";
+
+        if($email == $query){
+            return $deny;
+        } else {
+            return null;
+        }
+    }
+*/
 
     /**
      * Export user data as array
