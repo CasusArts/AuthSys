@@ -79,14 +79,3 @@ class User
     }
 
 }
-
-
-//class FtpUser extends User{
-//    public function setServerName()
-//    {
-//        $userName = $this->name;
-//    }
-//}
-//
-//
-//$ftpUser = new FtpUser();
